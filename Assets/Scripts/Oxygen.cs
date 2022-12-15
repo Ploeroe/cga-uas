@@ -51,6 +51,7 @@ public class Oxygen : MonoBehaviour
     void UpdateText(){
         textValue.text = loxy+"%";
         loxy--;
+        if(loxy<0)loxy=0;
     }
 
     // IEnumerator UpdateText()
