@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -25,6 +26,7 @@ public class Oxygen : MonoBehaviour
     public string textElement;
     public int loxy = 100;
     private float timeElapsed = 0.0f;
+    public GameObject gameObjectToDestroy;
 
 
     // Start is called before the first frame update
@@ -51,7 +53,11 @@ public class Oxygen : MonoBehaviour
     void UpdateText(){
         textValue.text = loxy+"%";
         loxy--;
-        if(loxy<0)loxy=0;
+        name = "Pake yang ini";
+        if(loxy<0){
+            loxy=0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     // IEnumerator UpdateText()
