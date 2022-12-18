@@ -7,6 +7,8 @@ public class PanelUI : MonoBehaviour
     // Start is called before the first frame update
     public GameObject TextPintuUI;
     public GameObject text;
+    bool bukaPanel = false;
+    public Animator pintuAnim;
 
     void Start()
     {
@@ -14,15 +16,28 @@ public class PanelUI : MonoBehaviour
         text.SetActive(false);
     }
 
-    private void OnCollisionEnter(Collider obj){
-        if(obj.gameObject.tag.Equals("Player")) text.SetActive(true);
+    private void OnTriggerEnter(Collider obj){
+        if(obj.gameObject.tag.Equals("Player")) {
+            text.SetActive(true);
+        }
     }
 
-    private void OnCollisionStay(Collider obj){
-        if(obj.gameObject.tag.Equals("Player")) text.SetActive(true);
+    private void OnTriggerStay(Collider obj){
+        if(obj.gameObject.tag.Equals("Player")) {
+            text.SetActive(true);
+            if(Input.GetKeyDown("e")){
+                if(!bukaPanel){
+                    pintuAnim.SetBool("bukaPanel", true);
+                    bukaPanel = true;
+                }else{
+                    pintuAnim.SetBool("bukaPanel", false);
+                    bukaPanel = false;
+                }
+            }
+        }
     }
 
-    private void OnCollisionExit(Collider obj){
+    private void OnTriggerExit(Collider obj){
         if(obj.gameObject.tag.Equals("Player")) text.SetActive(false);
     }
 
