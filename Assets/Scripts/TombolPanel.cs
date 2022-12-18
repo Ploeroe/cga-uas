@@ -9,12 +9,22 @@ public class TombolPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bukaPanel = false;
+        
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown("e")){
+            if(!bukaPanel){
+                pintuAnim.SetBool("bukaPanel", true);
+                bukaPanel = true;
+            }else{
+                pintuAnim.SetBool("bukaPanel", false);
+                bukaPanel = false;
+            }
+        }
         
     }
 }
