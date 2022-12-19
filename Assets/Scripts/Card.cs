@@ -1,33 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class Card : MonoBehaviour
 {
     public GameObject TextPintuUI;
-    public GameObject text;
-    bool bukaPanel = false;
-    public Animator pintuAnim;
+    public GameObject CardObj;
+    public Text textValue;
     bool isTrigger = false;
+    public bool isCard = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        text = GameObject.Find("PintuUI");
-        text.SetActive(false);
+        TextPintuUI.SetActive(false);
+        CardObj.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider obj){
+        textValue.text = "Press E to get card";
         if(obj.gameObject.tag.Equals("Player")) {
-            text.text = "Press E to get card";
-            text.SetActive(true);
+            TextPintuUI.SetActive(true);
             isTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider obj){
         if(obj.gameObject.tag.Equals("Player")) {
-            text.SetActive(false);
+            TextPintuUI.SetActive(false);
             isTrigger = false;
         }
     }
@@ -36,12 +41,9 @@ public class Card : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("e") && isTrigger){
-            if(!bukaPanel){
-                pintuAnim.SetBool("bukaPanel", true);
-                bukaPanel = true;
-            }else if(bukaPanel){
-                pintuAnim.SetBool("bukaPanel", false);
-                bukaPanel = false;
+            if(!isCard){
+                CardObj.SetActive(false);
+                isCard = true;
             }
         }
     }

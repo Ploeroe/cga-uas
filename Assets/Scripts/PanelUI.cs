@@ -1,32 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PanelUI : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject TextPintuUI;
-    public GameObject text;
+    public Text textValue;
     bool bukaPanel = false;
     public Animator pintuAnim;
     bool isTrigger = false;
 
     void Start()
     {
-        text = GameObject.Find("PintuUI");
-        text.SetActive(false);
+        TextPintuUI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider obj){
+        textValue.text = "Press E to Open or Close The Door";
         if(obj.gameObject.tag.Equals("Player")) {
-            text.SetActive(true);
+            TextPintuUI.SetActive(true);
             isTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider obj){
         if(obj.gameObject.tag.Equals("Player")) {
-            text.SetActive(false);
+            TextPintuUI.SetActive(false);
             isTrigger = false;
         }
     }
