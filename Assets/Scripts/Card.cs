@@ -43,6 +43,7 @@ public class Card : MonoBehaviour
         if(Input.GetKeyDown("e") && isTrigger){
             if(!isCard){
                 CardObj.SetActive(false);
+                TextPintuUI.SetActive(false);
                 isCard = true;
             }
         }
