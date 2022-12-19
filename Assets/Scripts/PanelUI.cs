@@ -15,6 +15,7 @@ public class PanelUI : MonoBehaviour
     bool bukaPanel = false;
     public Animator pintuAnim;
     bool isTrigger = false;
+    public PanelPopUp panelPopUp;
 
     void Start()
     {
@@ -22,7 +23,11 @@ public class PanelUI : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider obj){
-        textValue.text = "Press E to Open or Close The Door";
+        if(panelPopUp.isOffGenerator){
+            textValue.text = "You need to turn on the generator first";
+        }else{
+            textValue.text = "Press E to access control panel";
+        }
         if(obj.gameObject.tag.Equals("Player")) {
             TextPintuUI.SetActive(true);
             isTrigger = true;
@@ -39,6 +44,11 @@ public class PanelUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(panelPopUp.isOffGenerator){
+            pintuAnim.SetBool("bukaPanel", false);
+            bukaPanel = false;
+            return;
+        }
         if(Input.GetKeyDown("e") && isTrigger){
             if(!bukaPanel){
                 pintuAnim.SetBool("bukaPanel", true);
