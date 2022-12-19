@@ -7,6 +7,7 @@ public class Robot : MonoBehaviour
     public float speed = 2.0f;
     public float rotationSpeed = 100.0f;
     Animator anim;
+    public static GameObject controlledBy;
 
     void Start()
     {
@@ -15,11 +16,11 @@ public class Robot : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(controlledBy != null) return;
         float translation = Input.GetAxis("Vertical") * speed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         translation *= Time.fixedDeltaTime;
         rotation *= Time.fixedDeltaTime;
-        transform.Translate(0, 0, translation);
         transform.Rotate(0, rotation, 0);
 
         if (translation != 0 && Input.GetKey(KeyCode.LeftShift))
