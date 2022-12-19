@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelUI : MonoBehaviour
+public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject TextPintuUI;
     public GameObject text;
     bool bukaPanel = false;
     public Animator pintuAnim;
     bool isTrigger = false;
 
+    // Start is called before the first frame update
     void Start()
     {
         text = GameObject.Find("PintuUI");
@@ -19,6 +19,7 @@ public class PanelUI : MonoBehaviour
 
     private void OnTriggerEnter(Collider obj){
         if(obj.gameObject.tag.Equals("Player")) {
+            text.text = "Press E to get card";
             text.SetActive(true);
             isTrigger = true;
         }

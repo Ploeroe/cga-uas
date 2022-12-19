@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 2.0f;
     public float rotationSpeed = 100.0f;
     Animator anim;
 
