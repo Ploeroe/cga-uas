@@ -9,15 +9,18 @@ using UnityEngine.EventSystems;
 
 public class Computer : MonoBehaviour
 {
+    public GameObject panel;
     public GameObject TextPintuUI;
     public Text textValue;
     bool isTrigger = false;
     public Card card;
+    public bool isPanelActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
         TextPintuUI.SetActive(false);
+        panel.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider obj){
@@ -37,7 +40,9 @@ public class Computer : MonoBehaviour
     private void OnTriggerExit(Collider obj){
         if(obj.gameObject.tag.Equals("Player")) {
             TextPintuUI.SetActive(false);
+            panel.SetActive(false);
             isTrigger = false;
+            isPanelActive = false;
         }
     }
 
@@ -47,6 +52,8 @@ public class Computer : MonoBehaviour
         if(Input.GetKeyDown("e") && isTrigger){
             if(card.isCard){
                 TextPintuUI.SetActive(false);
+                panel.SetActive(true);
+                isPanelActive = true;
             }
         }
     }

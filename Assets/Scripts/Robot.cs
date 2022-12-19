@@ -8,6 +8,7 @@ public class Robot : MonoBehaviour
     public float rotationSpeed = 100.0f;
     Animator anim;
     public static GameObject controlledBy;
+    public Computer computer;
 
     void Start()
     {
@@ -16,6 +17,13 @@ public class Robot : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(computer.isPanelActive){
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isJumping", false);
+            anim.SetFloat("characterSpeed", 0);
+            return;
+        }
         if(controlledBy != null) return;
         float translation = Input.GetAxis("Vertical") * speed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
