@@ -44,11 +44,10 @@ public class Computer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(Input.GetKeyDown("e") && isTrigger){
-        //     if(!Card.isCard){
-        //         TextPintuUI.SetActive(false);
-        //         Card.isCard = true;
-        //     }
-        // }
+        if(Input.GetKeyDown("e") && isTrigger){
+            if(card.isCard){
+                TextPintuUI.SetActive(false);
+            }
+        }
     }
 }
