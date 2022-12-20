@@ -11,7 +11,7 @@ public class Oxygen : MonoBehaviour
 {
     public Text textValue;
     public string textElement;
-    public int loxy = 100;
+    public int loxy;
     public bool mati = false;
     private float timeElapsed = 0.0f;
     public GameObject gameObjectToDestroy;
@@ -24,6 +24,7 @@ public class Oxygen : MonoBehaviour
     void Start()
     {
         // textValue.text = textElement;
+        loxy = 80;
         textValue.text = loxy+"%";
         panelGameOver.SetActive(false);
     }
