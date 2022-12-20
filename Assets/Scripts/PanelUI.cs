@@ -16,6 +16,9 @@ public class PanelUI : MonoBehaviour
     public Animator pintuAnim;
     bool isTrigger = false;
     public PanelPopUp panelPopUp;
+    public PanelParts panelparts;
+    private string partsCollected;
+    private string partsToCollect;
 
     void Start()
     {
@@ -23,7 +26,11 @@ public class PanelUI : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider obj){
-        if(panelPopUp.isOffGenerator){
+        if(!panelparts.isOpenPanel){
+            partsCollected = panelparts.part.ToString();
+            partsToCollect = panelparts.partsToOpenPanel.ToString();
+            textValue.text = "You need to collect all parts first : " + partsCollected + " / " + partsToCollect;
+        }else if(panelPopUp.isOffGenerator){
             textValue.text = "You need to turn on the generator first";
         }else{
             textValue.text = "Press E to access control panel";
@@ -44,7 +51,7 @@ public class PanelUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(panelPopUp.isOffGenerator){
+        if(panelPopUp.isOffGenerator || !panelparts.isOpenPanel){
             pintuAnim.SetBool("bukaPanel", false);
             bukaPanel = false;
             return;
