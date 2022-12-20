@@ -25,8 +25,12 @@ public class Oxygen : MonoBehaviour
     public Text textValue;
     public string textElement;
     public int loxy = 100;
+    public bool mati = false;
     private float timeElapsed = 0.0f;
     public GameObject gameObjectToDestroy;
+    public GameObject panelGameOver;
+    public Button restart;
+    float pauseTime;
 
 
     // Start is called before the first frame update
@@ -34,6 +38,7 @@ public class Oxygen : MonoBehaviour
     {
         // textValue.text = textElement;
         textValue.text = loxy+"%";
+        panelGameOver.SetActive(false);
     }
 
 
@@ -43,7 +48,7 @@ public class Oxygen : MonoBehaviour
         //update text over time
         // StartCoroutine(UpdateText());
         timeElapsed += Time.deltaTime;
-        if (timeElapsed >= 5.0f)
+        if (timeElapsed >= 1.0f)
         {
             UpdateText();
             timeElapsed = 0.0f;
@@ -56,8 +61,14 @@ public class Oxygen : MonoBehaviour
         name = "Pake yang ini";
         if(loxy<0){
             loxy=0;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            mati = true;
+            panelGameOver.SetActive(true);
+            restart.onClick.AddListener(RestartGame);
         }
+    }
+
+    public void RestartGame(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // IEnumerator UpdateText()

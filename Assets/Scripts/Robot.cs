@@ -9,6 +9,7 @@ public class Robot : MonoBehaviour
     Animator anim;
     public static GameObject controlledBy;
     public Computer computer;
+    public Oxygen oxygen;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class Robot : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(computer.isPanelActive){
+        if(computer.isPanelActive || oxygen.mati){
             anim.SetBool("isWalking", false);
             anim.SetBool("isRunning", false);
             anim.SetBool("isJumping", false);
